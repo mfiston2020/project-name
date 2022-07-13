@@ -15,7 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Pages\PagesController::class,'homepage']);
 
-Route::get('/login',function(){ return view('login'); });
 Route::get('/detail',function(){ return view('detail'); });
-Route::get('/dashboard',function(){ return view('dashboard'); });
+Route::get('/addMovie',function(){ return view('add-movie'); })->middleware('auth');
+Route::post('/saveMovie',[\App\Http\Controllers\Pages\PagesController::class,'save_movie'])->name('save.movie');
+
+Route::get('/home',function(){
+    return redirect('/dashboard');
+});
+
+Route::get('/dashboard',function(){ return view('dashboard'); })->middleware('auth');
 

@@ -19,4 +19,11 @@ class PagesController extends Controller
 
         return view('welcome',compact('movies'));
     }
+
+    function save_movie(Request $movies){
+        $movie  =   new Movie();
+        $movie->title   =   $movies->title;
+
+        return $movie;
+    }
 }
